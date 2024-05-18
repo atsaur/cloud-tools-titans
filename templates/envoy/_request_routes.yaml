@@ -1,5 +1,12 @@
 {{- define "titan-mesh-helm-lib-chart.envoy.filter.request.routes" }}
   {{- $routes := .routes }}
+  {{- $direction := .direction }}
+  {{- $clusters := .clusters }}
+  {{- $remoteMyApp := .remoteMyApp }}
+  {{- $routingType := .routingType }}
+  {{- $envoy := .envoy }}
+  {{- $validationEnabled := .validationEnabled }}
+  {{- $gatewayEnable := .gatewayEnable }}
   {{- range $routes }}
     {{- $route := .route }}
     {{- if or $route .redirect .directResponse }}
