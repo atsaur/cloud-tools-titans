@@ -7,7 +7,7 @@
   {{- $requestsTokenCheck := ternary $requests.tokenCheck false (hasKey $requests "tokenCheck") }}
   {{- $tokenValidation := $requestsTokenCheck }}
   {{- $tokenValidationBypass := not $tokenValidation }}
-  {{- $routes := $requests.routes | default list }} 
+  {{- $routes := $requests.routes | default list }}
   {{- $additionalRoutes := $requests.additionalRoutes }}
   {{- if $additionalRoutes }}
     {{- if $routes }}
