@@ -1,7 +1,7 @@
-# Untitled string in envoy cluster config schema Schema
+# Untitled boolean in envoy cluster config schema Schema
 
 ```txt
-envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/timeout
+envoy_cluster.json#/properties/local-myapp/properties/outlierDetection/properties/splitExternalLocalOriginErrors
 ```
 
 
@@ -10,6 +10,6 @@ envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/ti
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [envoy\_cluster.json\*](../out/envoy_cluster.json "open original schema") |
 
-## timeout Type
+## splitExternalLocalOriginErrors Type
 
-`string`
+`boolean`

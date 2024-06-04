@@ -1,7 +1,7 @@
 # Untitled string in envoy cluster config schema Schema
 
 ```txt
-envoy_cluster.json#/properties/local-myapp/properties/idleTimeout
+envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/outlierDetection/properties/enforcingLocalOriginSuccessRate
 ```
 
 
@@ -10,6 +10,6 @@ envoy_cluster.json#/properties/local-myapp/properties/idleTimeout
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [envoy\_cluster.json\*](../out/envoy_cluster.json "open original schema") |
 
-## idleTimeout Type
+## enforcingLocalOriginSuccessRate Type
 
 `string`

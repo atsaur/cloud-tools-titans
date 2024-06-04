@@ -134,7 +134,13 @@
 
 * [local-myapp add response headers config schema](./envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-response-headers-config-schema.md) – `envoy_cluster.json#/properties/local-myapp/properties/addResponseHeaders`
 
+* [local-myapp circuit breaker config schema](./envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md) – `envoy_cluster.json#/properties/local-myapp/properties/circuitBreakers`
+
 * [local-myapp config schema](./envoy_cluster-properties-local-myapp-config-schema.md) – `envoy_cluster.json#/properties/local-myapp`
+
+* [local-myapp outlier detection config schema](./envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-outlier-detection-config-schema.md) – `envoy_cluster.json#/properties/local-myapp/properties/outlierDetection`
+
+* [local-myapp outlier detection config schema](./envoy_cluster-patternproperties-envoy-cluster-config-schema-except-local-myapp-properties-local-myapp-outlier-detection-config-schema.md) – `envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/outlierDetection`
 
 * [local-myapp remove request headers config schema](./envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-remove-request-headers-config-schema.md) – `envoy_cluster.json#/properties/local-myapp/properties/removeRequestHeaders`
 

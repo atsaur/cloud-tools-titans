@@ -1,7 +1,7 @@
 # Untitled integer in envoy cluster config schema Schema
 
 ```txt
-envoy_cluster.json#/properties/local-myapp/properties/gateway/properties/port/oneOf/0
+envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/healthyPanicThreshold/oneOf/0
 ```
 
 

@@ -18,38 +18,24 @@ envoy_cluster.json#/properties/local-myapp
 
 | Property                                        | Type     | Required | Nullable       | Defined by                                                                                                                                                                                                                      |
 | :---------------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [address](#address)                             | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-address.md "envoy_cluster.json#/properties/local-myapp/properties/address")                                                         |
 | [addRequestHeaders](#addrequestheaders)         | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-request-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/addRequestHeaders")         |
 | [addResponseHeaders](#addresponseheaders)       | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-response-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/addResponseHeaders")       |
+| [circuitBreakers](#circuitbreakers)             | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/circuitBreakers")               |
+| [connectionTimeout](#connectiontimeout)         | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-connectiontimeout.md "envoy_cluster.json#/properties/local-myapp/properties/connectionTimeout")                                     |
 | [directResponseCode](#directresponsecode)       | Merged   | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-directresponsecode.md "envoy_cluster.json#/properties/local-myapp/properties/directResponseCode")                                   |
 | [directResponseMessage](#directresponsemessage) | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-directresponsemessage.md "envoy_cluster.json#/properties/local-myapp/properties/directResponseMessage")                             |
 | [gateway](#gateway)                             | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-gateway-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/gateway")                                           |
 | [healthChecks](#healthchecks)                   | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthchecks-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/healthChecks")                                 |
-| [idleTimeout](#idletimeout)                     | Merged   | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout.md "envoy_cluster.json#/properties/local-myapp/properties/idleTimeout")                                                 |
+| [healthyPanicThreshold](#healthypanicthreshold) | Merged   | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold.md "envoy_cluster.json#/properties/local-myapp/properties/healthyPanicThreshold")                             |
+| [idleTimeout](#idletimeout)                     | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout.md "envoy_cluster.json#/properties/local-myapp/properties/idleTimeout")                                                 |
+| [outlierDetection](#outlierdetection)           | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-outlier-detection-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/outlierDetection")            |
 | [path](#path)                                   | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-path.md "envoy_cluster.json#/properties/local-myapp/properties/path")                                                               |
+| [port](#port)                                   | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-port.md "envoy_cluster.json#/properties/local-myapp/properties/port")                                                               |
 | [removeRequestHeaders](#removerequestheaders)   | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-remove-request-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/removeRequestHeaders")   |
 | [removeResponseHeaders](#removeresponseheaders) | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-remove-response-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/removeResponseHeaders") |
 | [retryPolicy](#retrypolicy)                     | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-retry-policy-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/retryPolicy")                      |
 | [scheme](#scheme)                               | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-scheme.md "envoy_cluster.json#/properties/local-myapp/properties/scheme")                                                           |
-| [timeout](#timeout)                             | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-timeout.md "envoy_cluster.json#/properties/local-myapp/properties/timeout")                                                         |
-
-## address
-
-
-
-`address`
-
-* is optional
-
-* Type: `string`
-
-* cannot be null
-
-* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-address.md "envoy_cluster.json#/properties/local-myapp/properties/address")
-
-### address Type
-
-`string`
+| [type](#type)                                   | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-type.md "envoy_cluster.json#/properties/local-myapp/properties/type")                                                               |
 
 ## addRequestHeaders
 
@@ -86,6 +72,42 @@ envoy_cluster.json#/properties/local-myapp
 ### addResponseHeaders Type
 
 `object` ([local-myapp add response headers config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-response-headers-config-schema.md))
+
+## circuitBreakers
+
+
+
+`circuitBreakers`
+
+* is optional
+
+* Type: `object` ([local-myapp circuit breaker config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md))
+
+* cannot be null
+
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/circuitBreakers")
+
+### circuitBreakers Type
+
+`object` ([local-myapp circuit breaker config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md))
+
+## connectionTimeout
+
+
+
+`connectionTimeout`
+
+* is optional
+
+* Type: `string`
+
+* cannot be null
+
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-connectiontimeout.md "envoy_cluster.json#/properties/local-myapp/properties/connectionTimeout")
+
+### connectionTimeout Type
+
+`string`
 
 ## directResponseCode
 
@@ -165,6 +187,30 @@ one (and only one) of
 
 `object` ([healthChecks config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthchecks-config-schema.md))
 
+## healthyPanicThreshold
+
+
+
+`healthyPanicThreshold`
+
+* is optional
+
+* Type: merged type ([Details](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold.md))
+
+* cannot be null
+
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold.md "envoy_cluster.json#/properties/local-myapp/properties/healthyPanicThreshold")
+
+### healthyPanicThreshold Type
+
+merged type ([Details](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold.md))
+
+one (and only one) of
+
+* [Untitled integer in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold-oneof-0.md "check type definition")
+
+* [Untitled string in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-healthypanicthreshold-oneof-1.md "check type definition")
+
 ## idleTimeout
 
 
@@ -173,7 +219,7 @@ one (and only one) of
 
 * is optional
 
-* Type: merged type ([Details](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout.md))
+* Type: `string`
 
 * cannot be null
 
@@ -181,13 +227,25 @@ one (and only one) of
 
 ### idleTimeout Type
 
-merged type ([Details](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout.md))
+`string`
 
-one (and only one) of
+## outlierDetection
 
-* [Untitled integer in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout-oneof-0.md "check type definition")
 
-* [Untitled string in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-idletimeout-oneof-1.md "check type definition")
+
+`outlierDetection`
+
+* is optional
+
+* Type: `object` ([local-myapp outlier detection config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-outlier-detection-config-schema.md))
+
+* cannot be null
+
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-outlier-detection-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/outlierDetection")
+
+### outlierDetection Type
+
+`object` ([local-myapp outlier detection config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-outlier-detection-config-schema.md))
 
 ## path
 
@@ -204,6 +262,24 @@ one (and only one) of
 * defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-path.md "envoy_cluster.json#/properties/local-myapp/properties/path")
 
 ### path Type
+
+`string`
+
+## port
+
+
+
+`port`
+
+* is optional
+
+* Type: `string`
+
+* cannot be null
+
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-port.md "envoy_cluster.json#/properties/local-myapp/properties/port")
+
+### port Type
 
 `string`
 
@@ -279,11 +355,11 @@ one (and only one) of
 
 `string`
 
-## timeout
+## type
 
 
 
-`timeout`
+`type`
 
 * is optional
 
@@ -291,8 +367,8 @@ one (and only one) of
 
 * cannot be null
 
-* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-timeout.md "envoy_cluster.json#/properties/local-myapp/properties/timeout")
+* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-type.md "envoy_cluster.json#/properties/local-myapp/properties/type")
 
-### timeout Type
+### type Type
 
 `string`

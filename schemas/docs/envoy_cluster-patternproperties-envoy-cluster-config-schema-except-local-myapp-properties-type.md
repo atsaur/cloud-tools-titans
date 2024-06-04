@@ -1,7 +1,7 @@
-# Untitled integer in envoy cluster config schema Schema
+# Untitled string in envoy cluster config schema Schema
 
 ```txt
-envoy_cluster.json#/properties/local-myapp/properties/idleTimeout/oneOf/0
+envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/type
 ```
 
 
@@ -10,6 +10,6 @@ envoy_cluster.json#/properties/local-myapp/properties/idleTimeout/oneOf/0
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [envoy\_cluster.json\*](../out/envoy_cluster.json "open original schema") |
 
-## 0 Type
+## type Type
 
-`integer`
+`string`
