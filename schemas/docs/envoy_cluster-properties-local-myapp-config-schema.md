@@ -18,7 +18,6 @@ envoy_cluster.json#/properties/local-myapp
 
 | Property                                        | Type     | Required | Nullable       | Defined by                                                                                                                                                                                                                      |
 | :---------------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [address](#address)                             | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-address.md "envoy_cluster.json#/properties/local-myapp/properties/address")                                                         |
 | [addRequestHeaders](#addrequestheaders)         | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-request-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/addRequestHeaders")         |
 | [addResponseHeaders](#addresponseheaders)       | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-add-response-headers-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/addResponseHeaders")       |
 | [circuitBreakers](#circuitbreakers)             | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-circuit-breaker-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/circuitBreakers")               |
@@ -37,24 +36,6 @@ envoy_cluster.json#/properties/local-myapp
 | [retryPolicy](#retrypolicy)                     | `object` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-local-myapp-retry-policy-config-schema.md "envoy_cluster.json#/properties/local-myapp/properties/retryPolicy")                      |
 | [scheme](#scheme)                               | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-scheme.md "envoy_cluster.json#/properties/local-myapp/properties/scheme")                                                           |
 | [type](#type)                                   | `string` | Optional | cannot be null | [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-type.md "envoy_cluster.json#/properties/local-myapp/properties/type")                                                               |
-
-## address
-
-
-
-`address`
-
-* is optional
-
-* Type: `string`
-
-* cannot be null
-
-* defined in: [envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-address.md "envoy_cluster.json#/properties/local-myapp/properties/address")
-
-### address Type
-
-`string`
 
 ## addRequestHeaders
 

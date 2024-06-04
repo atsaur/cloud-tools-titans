@@ -9,9 +9,6 @@
             "type": "object",
             "title": "local-myapp config schema",
             "properties": {
-                "address": {
-                    "type": "string"
-                },
                 "addRequestHeaders": {
                     "type": "object",
                     "title": "local-myapp add request headers config schema",
@@ -326,7 +323,8 @@
                 "type": {
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "additionalProperties": false
     },
