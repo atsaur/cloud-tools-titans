@@ -1,4 +1,4 @@
-# Untitled undefined type in envoy cluster config schema Schema
+# Untitled string in envoy cluster config schema Schema
 
 ```txt
 envoy_cluster.json#/properties/local-myapp/properties/gateway/properties/port
@@ -12,10 +12,4 @@ envoy_cluster.json#/properties/local-myapp/properties/gateway/properties/port
 
 ## port Type
 
-merged type ([Details](envoy_cluster-properties-local-myapp-config-schema-properties-gateway-config-schema-properties-port.md))
-
-one (and only one) of
-
-* [Untitled integer in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-gateway-config-schema-properties-port-oneof-0.md "check type definition")
-
-* [Untitled string in envoy cluster config schema](envoy_cluster-properties-local-myapp-config-schema-properties-gateway-config-schema-properties-port-oneof-1.md "check type definition")
+`string`

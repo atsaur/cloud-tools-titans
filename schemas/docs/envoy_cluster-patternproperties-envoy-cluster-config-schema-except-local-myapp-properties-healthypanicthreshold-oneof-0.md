@@ -1,7 +1,7 @@
-# Untitled string in envoy cluster config schema Schema
+# Untitled integer in envoy cluster config schema Schema
 
 ```txt
-envoy_cluster.json#/properties/local-myapp/properties/gateway/properties/port/oneOf/1
+envoy_cluster.json#/patternProperties/^(?!local-myapp$)[a-zA-Z_-]+/properties/healthyPanicThreshold/oneOf/0
 ```
 
 
@@ -10,16 +10,6 @@ envoy_cluster.json#/properties/local-myapp/properties/gateway/properties/port/on
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [envoy\_cluster.json\*](../out/envoy_cluster.json "open original schema") |
 
-## 1 Type
+## 0 Type
 
-`string`
-
-## 1 Constraints
-
-**pattern**: the string must match the following regular expression:&#x20;
-
-```regexp
-^[0-9]+$
-```
-
-[try pattern](https://regexr.com/?expression=%5E%5B0-9%5D%2B%24 "try regular expression with regexr.com")
+`integer`

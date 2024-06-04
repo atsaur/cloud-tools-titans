@@ -30,6 +30,18 @@
                         }
                     }
                 },
+                "circuitBreakers": {
+                    "type": "object",
+                    "title": "local-myapp circuit breaker config schema",
+                    "properties": {
+                        "This is a place holder, schema documentation is in process": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "connectionTimeout": {
+                    "type": "string"
+                },
                 "directResponseCode": {
                     "oneOf": [
                         {
@@ -49,22 +61,20 @@
                     "type": "object",
                     "title": "gateway config schema",
                     "properties": {
+                        "checkUpstreamClusters": {
+                            "type": "boolean"
+                        },
                         "defaultBackend": {
                             "type": "string"
                         },
                         "enabled": {
                             "type": "boolean"
                         },
+                        "minHealthRatio": {
+                            "type": "string"
+                        },
                         "port": {
-                            "oneOf": [
-                                {
-                                    "type": "integer"
-                                },
-                                {
-                                    "type": "string",
-                                    "pattern": "^[0-9]+$"
-                                }
-                            ]
+                            "type": "string"
                         }
                     }
                 },
@@ -72,12 +82,27 @@
                     "type": "object",
                     "title": "healthChecks config schema",
                     "properties": {
+                        "interval": {
+                            "type": "string"
+                        },
+                        "noTrafficInterval": {
+                            "type": "string"
+                        },
                         "path": {
                             "type": "string"
+                        },
+                        "scheme": {
+                            "type": "string"
+                        },
+                        "timeout": {
+                            "type": "string"
+                        },
+                        "unhealthyThreahold": {
+                            "type": "integer"
                         }
                     }
                 },
-                "idleTimeout": {
+                "healthyPanicThreshold": {
                     "oneOf": [
                         {
                             "type": "integer"
@@ -88,7 +113,43 @@
                         }
                     ]
                 },
+                "idleTimeout": {
+                    "type": "string"
+                },
+                "outlierDetection": {
+                    "type": "object",
+                    "title": "local-myapp outlier detection config schema",
+                    "properties": {
+                        "enforcingConsecutive5xx": {
+                            "type": "string"
+                        },
+                        "enforcingConsecutiveGatewayFailure": {
+                            "type": "string"
+                        },
+                        "enforcingConsecutiveLocalOriginFailure": {
+                            "type": "string"
+                        },
+                        "enforcingFailurePercentage": {
+                            "type": "string"
+                        },
+                        "enforcingFailurePercentageLocalOrigin": {
+                            "type": "string"
+                        },
+                        "enforcingLocalOriginSuccessRate": {
+                            "type": "string"
+                        },
+                        "enforcingSuccessRate": {
+                            "type": "string"
+                        },
+                        "splitExternalLocalOriginErrors": {
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "path": {
+                    "type": "string"
+                },
+                "port": {
                     "type": "string"
                 },
                 "removeRequestHeaders": {
@@ -121,7 +182,7 @@
                 "scheme": {
                     "type": "string"
                 },
-                "timeout": {
+                "type": {
                     "type": "string"
                 }
             },
@@ -134,6 +195,12 @@
             "title": "envoy cluster config schema (except local-myapp)",
             "properties": {
                 "address": {
+                    "type": "string"
+                },
+                "alias": {
+                    "type": "string"
+                },
+                "connectionTimeout": {
                     "type": "string"
                 },
                 "healthChecks": {
@@ -170,6 +237,20 @@
                     },
                     "additionalProperties": false
                 },
+                "healthyPanicThreshold": {
+                    "oneOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        }
+                    ]
+                },
+                "hostname": {
+                    "type": "string"
+                },
                 "idleTimeout": {
                     "oneOf": [
                         {
@@ -181,7 +262,43 @@
                         }
                     ]
                 },
+                "lbPolicy": {
+                    "type": "string"
+                },
+                "outlierDetection": {
+                    "type": "object",
+                    "title": "local-myapp outlier detection config schema",
+                    "properties": {
+                        "enforcingConsecutive5xx": {
+                            "type": "string"
+                        },
+                        "enforcingConsecutiveGatewayFailure": {
+                            "type": "string"
+                        },
+                        "enforcingConsecutiveLocalOriginFailure": {
+                            "type": "string"
+                        },
+                        "enforcingFailurePercentage": {
+                            "type": "string"
+                        },
+                        "enforcingFailurePercentageLocalOrigin": {
+                            "type": "string"
+                        },
+                        "enforcingLocalOriginSuccessRate": {
+                            "type": "string"
+                        },
+                        "enforcingSuccessRate": {
+                            "type": "string"
+                        },
+                        "splitExternalLocalOriginErrors": {
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "path": {
+                    "type": "string"
+                },
+                "port": {
                     "type": "string"
                 },
                 "retryPolicy": {
@@ -203,9 +320,11 @@
                 "scheme": {
                     "type": "string"
                 },
-                "timeout": {
-                    "type": "string",
-                    "_comment": "should we use regex for config like 10s, 5m"
+                "targetPort": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
                 }
             }
         },
