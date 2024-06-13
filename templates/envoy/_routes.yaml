@@ -149,6 +149,15 @@
         {{- end }}
       {{- end }}
     {{- end }}
+    {{- $ingressRoutes := dict -}}
+    {{- range $ingress.routes -}}
+      {{- $route := .route -}}
+      {{- if $route -}}
+        {{- $match := .match -}}
+        
+
+      {{- end -}}
+    {{- end -}}
   {{- else }}
     {{- $routes = ternary $ingress.routes $egress.routes (eq "ingress" $direction) }}
     {{- $additionalRoutes := ternary $ingress.additionalRoutes $egress.additionalRoutes (eq "ingress" $direction) }}
