@@ -22,7 +22,6 @@
   {{- $ratelimitConfigPath := $ratelimit.configPath | default "/configs/ratelimit/config" -}}
   {{- $ratelimitConfigFileName := $ratelimit.configFileName | default "ratelimit_config.yaml" -}}
   {{- $ratelimitConfigVolumeMountPath := $ratelimit.configVolumeMountPath | default "/configs" -}}
-  {{- $clusters := $envoy.clusters }}
   {{- $routes := $ingress.routes | default list }}
   {{- $additionalRoutes := $ingress.additionalRoutes }}
   {{- if $additionalRoutes }}
