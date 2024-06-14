@@ -53,8 +53,10 @@
       value: {{ ( $ratelimit.redisPoolSize | default 2 )  | quote  }}
     - name: REDIS_URL
       value: {{ $ratelimit.redisUrl | default "10.251.54.3:6379" | quote }}
-    - name: REDIS_USE_TLS
+    - name: REDIS_TLS
       value: {{ $ratelimit.redisUseTls | default "False" | quote }}
+    - name: REDIS_TLS_SKIP_HOSTNAME_VERIFICATION
+      value: {{ $ratelimit.redisTlsSkipHostnameVerification | default "False" | quote }}
     - name: REDIS_SOCKET_TYPE
       value: {{ $ratelimit.redisSocketType | default "tcp" | quote }}
     - name: REDIS_AUTH
