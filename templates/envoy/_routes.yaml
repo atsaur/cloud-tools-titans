@@ -149,14 +149,17 @@
         {{- end }}
       {{- end }}
     {{- end }}
-    {{- $ingressRoutes := dict -}}
-    {{- range $ingress.routes -}}
-      {{- $route := .route -}}
-      {{- if $route -}}
-        {{- $match := .match -}}
-        
 
+    {{- $ingressRoutes := list -}}
+    {{- range $ingress.routes -}}
+      {{- if .route -}}
+        {{- if haskey .route "cluster" -}}
+          {{- $ingressRoutes = append $ingressRoutes . -}}
+        {{- end -}}
       {{- end -}}
+    {{- end -}}
+    {{- if $ingressRoutes -}}
+      {{- $routes = concat $ingressRoutes $routes -}}
     {{- end -}}
   {{- else }}
     {{- $routes = ternary $ingress.routes $egress.routes (eq "ingress" $direction) }}
