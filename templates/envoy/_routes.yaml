@@ -149,6 +149,23 @@
         {{- end }}
       {{- end }}
     {{- end }}
+
+    {{- $ingressRoutes := list -}}
+    {{- range $ingress.routes -}}
+      {{- if .route -}}
+        {{- $ingressRoute := . -}}
+        {{- $ingressRouteOperation := $ingressRoute.route -}}
+        {{- if or (haskey $ingressRouteOperation "cluster") (ne $defaultBackend "") -}}
+          {{- if not (haskey $ingressRouteOperation "cluster") -}}
+            {{- $_ := set $ingressRouteOperation "cluster" $defaultBackend -}}
+          {{- end -}}
+          {{- $ingressRoutes = append $ingressRoutes $ingressRoute -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $ingressRoutes -}}
+      {{- $routes = concat $ingressRoutes $routes -}}
+    {{- end -}}
   {{- else }}
     {{- $routes = ternary $ingress.routes $egress.routes (eq "ingress" $direction) }}
     {{- $additionalRoutes := ternary $ingress.additionalRoutes $egress.additionalRoutes (eq "ingress" $direction) }}
