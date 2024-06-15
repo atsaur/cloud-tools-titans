@@ -155,8 +155,8 @@
       {{- if .route -}}
         {{- $ingressRoute := . -}}
         {{- $ingressRouteOperation := $ingressRoute.route -}}
-        {{- if or (haskey $ingressRouteOperation "cluster") (ne $defaultBackend "") -}}
-          {{- if not (haskey $ingressRouteOperation "cluster") -}}
+        {{- if or (hasKey $ingressRouteOperation "cluster") (ne $defaultBackend "") -}}
+          {{- if not (hasKey $ingressRouteOperation "cluster") -}}
             {{- $_ := set $ingressRouteOperation "cluster" $defaultBackend -}}
           {{- end -}}
           {{- $ingressRoutes = append $ingressRoutes $ingressRoute -}}
