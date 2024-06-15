@@ -7,50 +7,13 @@
   {{- $requestsTokenCheck := ternary $requests.tokenCheck false (hasKey $requests "tokenCheck") }}
   {{- $tokenValidation := $requestsTokenCheck }}
   {{- $tokenValidationBypass := not $tokenValidation }}
-  {{- $gatewayEnable := false }}
-  {{- if $localMyApp.gateway  -}}
-    {{- $gatewayEnable = ternary $localMyApp.gateway.enabled true (hasKey $localMyApp.gateway "enabled") }}
-  {{- end }}
-  {{- $routes := $requests.routes }}
-  {{- if and $localMyApp (not $routes) }}
-    {{- if ternary $requests.enabled true (hasKey $requests "enabled") }}
-      {{ $routes = $localMyApp.routes }}
-    {{- end }}
-  {{- end }}  
+  {{- $routes := $requests.routes | default list }}
   {{- $additionalRoutes := $requests.additionalRoutes }}
   {{- if $additionalRoutes }}
     {{- if $routes }}
       {{- $routes = concat $additionalRoutes $routes }}
     {{- else }}
       {{- $routes = $additionalRoutes }}
-    {{- end }}
-  {{- end }}
-  {{- if $gatewayEnable }}
-    {{- if not $routes }}
-      {{- $routes = list }}
-    {{- end }}
-    {{- range $cn, $cv := $clusters }}
-      {{- if and (ne $cn "local-myapp") (ne $cn "remote-myapp") }}
-        {{- range $cv.routes }}
-          {{- $route := dict -}}
-          {{- if .match }}
-            {{- $_ := set $route "match" .match }}
-          {{- end }}
-          {{- if .route }}
-            {{- $routeValue := .route }}
-            {{- $_ := set $routeValue "cluster" $cn }}
-            {{- $_ := set $route "route" $routeValue }}
-          {{- else }}
-            {{- $_ := set $route "route" (dict "cluster" $cn) }}
-          {{- end }}
-          {{- if .tokenCheck }}
-            {{- $_ := set $route "tokenCheck" .tokenCheck }}
-          {{- end }}
-          {{- if $route }}
-            {{- $routes = append $routes $route }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
     {{- end }}
   {{- end }}
   {{- range $routes  }}
