@@ -24,6 +24,8 @@
   {{- $envoyEgressPort := $egress.port | default "9565"  }}
   {{- $opaPort := $opa.port | default "9191"  }}
   {{- $ingressIdleTimeout := $remoteMyApp.idleTimeout }}
+  {{- $ingressScheme := $remoteMyApp.scheme | default "HTTP2" }}
+  {{- $ingressContentType := lower ($remoteMyApp.contentType | default "") }}
   {{- $customTpls := $titanSideCars.customTpls }}
   {{- $customEnvoyTpls := $customTpls.envoy }}
   {{- $ingressEnabled := ternary $ingress.enabled true (hasKey $ingress "enabled") -}}
@@ -68,7 +70,7 @@
     {{- if $ingressIdleTimeout }}
             stream_idle_timeout: {{ $ingressIdleTimeout }}
     {{- end }}
-    {{- include "titan-mesh-helm-lib-chart.envoy.httpoptions" (dict "httpScheme" "HTTP2" "cluster" (index $clusters "remote-myapp")) | nindent 12 }}
+    {{- include "titan-mesh-helm-lib-chart.envoy.httpoptions" (dict "httpScheme" $ingressScheme "cluster" (index $clusters "remote-myapp")) | nindent 12 }}
             http_filters:
     {{- range $customEnvoyTpls.filters }}
       {{- $before := .before | default "" }}
