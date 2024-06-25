@@ -25,7 +25,6 @@
   {{- $opaPort := $opa.port | default "9191"  }}
   {{- $ingressIdleTimeout := $remoteMyApp.idleTimeout }}
   {{- $ingressScheme := $remoteMyApp.scheme | default "HTTP2" }}
-  {{- $ingressContentType := lower ($remoteMyApp.contentType | default "") }}
   {{- $customTpls := $titanSideCars.customTpls }}
   {{- $customEnvoyTpls := $customTpls.envoy }}
   {{- $ingressEnabled := ternary $ingress.enabled true (hasKey $ingress "enabled") -}}
