@@ -141,12 +141,14 @@
       {{- end }}
     {{- end }} 
   {{- end }}
-  {{- include "titan-mesh-helm-lib-chart.envoy.filter.request.routes" (dict "routes" $routes "direction" $direction "clusters" $clusters "remoteMyApp" $remoteMyApp "routingType" $routingType "envoy" $envoy "validationEnabled" $validationEnabled "gatewayEnable" $gatewayEnable) }}
-  {{- if and (eq $direction "ingress") (eq $routingType "pathBasedRouting") }}
+  {{- if and (eq $direction "ingress") (eq $routingType "hostBasedRouting") }}
     {{- $gatewayIngressRoutes := concat ($ingress.additionalRoutes | default list) ($ingress.routes | default list) -}}
     {{- if and $gatewayEnable $gatewayIngressRoutes }}
-      {{- include "titan-mesh-helm-lib-chart.envoy.filter.request.routes" (dict "routes" $gatewayIngressRoutes "direction" $direction "clusters" $clusters "remoteMyApp" $remoteMyApp "routingType" $routingType "envoy" $envoy "validationEnabled" $validationEnabled "gatewayEnable" $gatewayEnable) }}
+      {{- include "titan-mesh-helm-lib-chart.envoy.filter.request.routes" (dict "routes" $gatewayIngressRoutes "direction" $direction "clusters" $clusters "remoteMyApp" $remoteMyApp "routingType" "pathBasedRouting" "envoy" $envoy "validationEnabled" $validationEnabled "gatewayEnable" $gatewayEnable) }}
     {{- end }}
+  {{- end }}
+  {{- include "titan-mesh-helm-lib-chart.envoy.filter.request.routes" (dict "routes" $routes "direction" $direction "clusters" $clusters "remoteMyApp" $remoteMyApp "routingType" $routingType "envoy" $envoy "validationEnabled" $validationEnabled "gatewayEnable" $gatewayEnable) }}
+  {{- if and (eq $direction "ingress") (eq $routingType "pathBasedRouting") }}
     {{- $cluster := index $envoy.clusters "local-myapp" }}
     {{- $retryPolicy := $cluster.retryPolicy }}
                 - match:
