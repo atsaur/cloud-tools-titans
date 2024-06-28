@@ -62,6 +62,7 @@
     {{- if $connectionMgr.pathWithEscapedSlashesAction }}
       {{- $pathWithEscapedSlashesAction = $connectionMgr.pathWithEscapedSlashesAction -}}
     {{- end }}
+            add_user_agent: {{ ternary $connectionMgr.addUserAgent true (hasKey $connectionMgr "addUserAgent") }}
             normalize_path: {{ $normalizePath }}
             merge_slashes: {{ $mergeSlashes }}
             path_with_escaped_slashes_action: {{ $pathWithEscapedSlashesAction }}
