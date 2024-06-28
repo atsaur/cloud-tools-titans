@@ -3,12 +3,17 @@
   {{- $direction := .direction }}
   {{- $clusters := .clusters }}
   {{- $remoteMyApp := .remoteMyApp }}
-  {{- $routingType := .routingType }}
   {{- $envoy := .envoy }}
   {{- $validationEnabled := .validationEnabled }}
   {{- $gatewayEnable := .gatewayEnable }}
+  {{- $routingTypes := list "priority" "hostBasedRouting" "pathBasedRouting" -}}
+
+  {{- range $routingTypes -}}
+    {{- $routingType := . -}}
+
   {{- range $routes }}
     {{- $route := .route }}
+    {{- $priority := .priority | default false -}}
     {{- if or $route .redirect .directResponse }}
       {{- $clusterName := $route.cluster | default "" }}
       {{- $lookupClusterName := ternary $route.baseCluster ($route.cluster | default "") (hasKey $route "baseCluster") }}
@@ -146,13 +151,15 @@
         {{- else }}
           {{- $match := .match }}
           {{- $processRoute := false }}
-          {{- if eq $routingType "hostBasedRouting" }}
+          {{- if and (eq $routingType "priority") $priority -}}
+            {{- $processRoute = true }}
+          {{- else if and (eq $routingType "hostBasedRouting") (not $priority) }}
             {{- range $match.headers }}
               {{- if eq .key ":authority" }}
                 {{- $processRoute = true }}
               {{- end }}
             {{- end }}
-          {{- else if eq $routingType "pathBasedRouting" }}
+          {{- else if and (eq $routingType "pathBasedRouting") (not $priority) }}
             {{- $processRoute = true }}
             {{- range $match.headers }}
               {{- if eq .key ":authority" }}
@@ -294,5 +301,7 @@
         {{- end }}
       {{- end }}
     {{- end }}
+  {{- end }}
+
   {{- end }}
 {{- end }}
