@@ -24,6 +24,7 @@
   {{- if $gatewayEnable }} 
     {{- $defaultBackend = $gateway.defaultBackend | default "" }}
     {{- $weightedClusters := dict -}}
+    {{- $canaryClusters := dict -}}
     {{- range $cluster, $value := $clusters }}
       {{- if $value.weightedClusterId -}}
         {{- $weightedCluster := get $weightedClusters $value.weightedClusterId -}}
@@ -33,9 +34,15 @@
           {{- $_ := set $weightedClusters $value.weightedClusterId (dict $cluster $value.weight) -}}
         {{- end -}}
       {{- end -}}
+      {{- if and (hasKey $value "canaryNamespace") (hasKey $value "alias") -}}
+        {{- $_ := set $canaryClusters $value.alias (dict "namespace" $value.namespace "canaryNamespace" $value.canaryNamespace) -}}
+      {{- end -}}
     {{- end -}}
     {{- if $weightedClusters -}}
       {{- $_ := set $envoy "weightedClusters" $weightedClusters -}}
+    {{- end -}}
+    {{- if $canaryClusters -}}
+      {{- $_ := set $envoy "canaryClusters" $canaryClusters -}}
     {{- end -}}
   {{- end }}
   {{- $myClusters := dict }}

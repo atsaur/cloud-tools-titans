@@ -6,14 +6,21 @@
   {{- $clusterCanarySupport := .clusterCanarySupport }}
   {{- $clusterName := .clusterName }}
   {{- $clusterValue := .clusterValue }}
-  {{- $requestOverride := .requestOverride -}}
+  {{- $requestOverride := .requestOverride | default dict -}}
+  {{- $gatewayIngress := .gatewayIngress | default false -}}
   {{- $routes := list -}}
   {{- $weightedClustersRoutes := $routesBuilder.weightedClustersRoutes -}}
-  {{- range $clusterValue.routes }}
-    {{- $route := mergeOverwrite (deepCopy (.route | default dict)) ($requestOverride.route | default dict) -}}
+  {{- $requestRoutes := list -}}
+  {{- if hasKey $requestOverride "match" -}}
+    {{- $requestRoutes = append $requestRoutes $requestOverride -}}
+  {{- else -}}
+    {{- $requestRoutes = $clusterValue.routes -}}
+  {{- end -}}
+  {{- range $requestRoutes }}
+    {{- $route := (.route | default dict) | deepCopy -}}
     {{- $_ := set $route "cluster" $clusterName -}}
     {{- if hasKey $clusterValue "fixedSiteDomainName" -}}
-      {{- $match := ternary $requestOverride.match .match (hasKey $requestOverride "match") | deepCopy }}
+      {{- $match := .match | deepCopy }}
       {{- $headers := $match.headers | default list -}}
       {{- $addFixedSiteRoute := true -}}
       {{- range $headers -}}
