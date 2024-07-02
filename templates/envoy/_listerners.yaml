@@ -1,5 +1,10 @@
 {{- define "titan-mesh-helm-lib-chart.envoy.listeners" }}
   {{- $titanSideCars := .titanSideCars }}
+  {{- $validation := $titanSideCars.validation -}}
+  {{- $validationEnabled := false -}}
+  {{- if $validation -}}
+    {{- $validationEnabled = ternary $validation.enabled true (hasKey $validation "enabled") -}}
+  {{- end }}
   {{- $releaseNamespace := .releaseNamespace }}
   {{- $chartName := .chartName }}
   {{- $useDynamicConfiguration := .useDynamicConfiguration }}
@@ -121,6 +126,13 @@
               virtual_hosts:
               - domains: '*'
                 name: {{ $appName }}-ingress
+    {{- if $envoy.perRouteFilters }}
+                typed_per_filter_config:
+      {{- range $k, $v := $envoy.perRouteFilters }}
+        {{- printf "%s:" $k | nindent 18 }}
+        {{- $v | toYaml | nindent 20 }}
+      {{- end }}
+    {{- end -}}
     {{- if $ingress.addRequestHeaders }}
                 request_headers_to_add:
       {{- range $ingress.addRequestHeaders }}
@@ -188,7 +200,7 @@
     {{- end }}
       address:
         socket_address:
-          address: 0.0.0.0
+          address: {{ ternary "0.0.0.0" "127.0.0.1" $validationEnabled }}
           port_value: {{ $envoyEgressPort }}
       filter_chains:
       - filters:
@@ -218,6 +230,13 @@
               - x-forwarded-for
               virtual_hosts:
               - name: {{ $appName }}-egress
+    {{- if $envoy.perRouteFilters }}
+                typed_per_filter_config:
+      {{- range $k, $v := $envoy.perRouteFilters }}
+        {{- printf "%s:" $k | nindent 18 }}
+        {{- $v | toYaml | nindent 20 }}
+      {{- end }}
+    {{- end -}}
     {{- if $egress.addRequestHeaders }}
                 request_headers_to_add:
       {{- range $egress.addRequestHeaders }}
